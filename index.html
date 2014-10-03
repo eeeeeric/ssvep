@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>SSVEP</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0;}
+
+        body, html { height:100%; }
+
+        canvas {
+            
+            width:50%;
+            height:100%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <canvas height="1" id="left" width="1"></canvas><canvas height="1" id="right" width="1"></canvas> 
+    <script>
+        var step_left = 0;
+        function drawLeft() {
+            var my_canvas = document.getElementById("left");
+            var my_context = my_canvas.getContext("2d");
+            my_context.fillStyle = step_left++ % 2 == 0 ? "black" : "white";
+            my_context.fillRect(0,0, 10000,10000);
+        }
+
+        var step_right = 0;
+        function drawRight() {
+            var my_canvas = document.getElementById("right");
+            var my_context = my_canvas.getContext("2d");
+            my_context.fillStyle = step_right++ % 2 == 0 ? "black" : "white";
+            my_context.fillRect(0,0, 10000,10000);
+        }
+
+        var left_step_size = 1000/(2*7);
+        var right_step_size = 1000/(2*12);
+        var left, right;
+        var on = false;
+        $(document).keypress(function(event) {
+            if (event.keyCode == 32) {
+                if (on) {
+                    clearInterval(left);
+                    clearInterval(right);
+                    on = false;
+                }
+                else {
+                    left = setInterval(drawLeft, left_step_size);
+                    right = setInterval(drawRight, right_step_size);
+                    on = true;
+                }            
+            }
+        })
+    </script>
+</body>
+</html>
