@@ -21,6 +21,19 @@
 <body>
     <canvas height="1" id="left" width="1"></canvas><canvas height="1" id="right" width="1"></canvas> 
     <script>
+        var left_step_size = 1000/(2*7);
+        var right_step_size = 1000/(2*12);
+        
+        function getFrequencies() {
+            var frequencies = prompt("Please enter the desired frequencies, e.g. 7,12 " +
+                                     "for a left eye frequency of 7 Hz, and right eye " +
+                                     "frequency of 12 Hz.", "7,12");
+            var left = frequencies.split(",")[0];
+            var right = frequencies.split(",")[1];
+            left_step_size = 1000/(2*parseInt(left));
+            right_step_size = 1000/(2*parseInt(right));
+        }
+        
         var step_left = 0;
         function drawLeft() {
             var my_canvas = document.getElementById("left");
@@ -37,8 +50,6 @@
             my_context.fillRect(0,0, 10000,10000);
         }
 
-        var left_step_size = 1000/(2*7);
-        var right_step_size = 1000/(2*12);
         var left, right;
         var on = false;
         $(document).keypress(function(event) {
@@ -55,6 +66,7 @@
                 }            
             }
         })
+        getFrequencies();
     </script>
 </body>
 </html>
