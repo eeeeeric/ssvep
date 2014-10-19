@@ -53,7 +53,7 @@
         var left, right;
         var on = false;
         $(document).keypress(function(event) {
-            if (event.keyCode == 32) {
+            if (event.which == 32) {
                 if (on) {
                     clearInterval(left);
                     clearInterval(right);

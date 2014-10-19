@@ -2,6 +2,6 @@ ssvep
 =====
 Web based tool for steady state visually invoked potentials.
 
-Start/stop using the SPACEBAR
+See gh-pages branch for actual code.
 
-Only works in Chrome.
+Start/stop using the SPACEBAR.
