@@ -21,15 +21,19 @@
 <body>
     <canvas height="1" id="left" width="1"></canvas><canvas height="1" id="right" width="1"></canvas> 
     <script>
-        var left_step_size = 1000/(2*7);
-        var right_step_size = 1000/(2*12);
+        var left_step_size = 1000/(2*6);
+        var right_step_size = 1000/(2*10);
+        var my_canvas_left = document.getElementById("left");
+        var my_context_left = my_canvas_left.getContext("2d");
+        var my_canvas_right = document.getElementById("right");
+        var my_context_right = my_canvas_right.getContext("2d");
         
         function getFrequencies() {
             var frequencies = prompt("EPILEPSY\nWARNING\n\nA few people may experience " +
                                      "epileptic seizures when viewing flashing lights.\n\n" + 
-                                     "Please enter the desired frequencies, e.g. 7,12 " +
-                                     "for a left eye frequency of 7 Hz, and right eye " +
-                                     "frequency of 12 Hz.", "7,12");
+                                     "Please enter the desired frequencies, e.g. 6,10 " +
+                                     "for a left eye frequency of 6 Hz, and right eye " +
+                                     "frequency of 10 Hz.", "6,10");
             var left = frequencies.split(",")[0];
             var right = frequencies.split(",")[1];
             left_step_size = 1000/(2*parseInt(left));
@@ -38,18 +42,14 @@
         
         var step_left = 0;
         function drawLeft() {
-            var my_canvas = document.getElementById("left");
-            var my_context = my_canvas.getContext("2d");
-            my_context.fillStyle = step_left++ % 2 == 0 ? "black" : "white";
-            my_context.fillRect(0,0, 10000,10000);
+            my_context_left.fillStyle = step_left++ % 2 == 0 ? "black" : "white";
+            my_context_left.fillRect(0,0, 2000,2000);
         }
 
         var step_right = 0;
         function drawRight() {
-            var my_canvas = document.getElementById("right");
-            var my_context = my_canvas.getContext("2d");
-            my_context.fillStyle = step_right++ % 2 == 0 ? "black" : "white";
-            my_context.fillRect(0,0, 10000,10000);
+            my_context_right.fillStyle = step_right++ % 2 == 0 ? "black" : "white";
+            my_context_right.fillRect(0,0, 2000,2000);
         }
 
         var left, right;
